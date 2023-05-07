@@ -1,0 +1,48 @@
+{% extends 'keshihua/base.html' %}
+{% block title %}用户管理{% endblock %}
+{% block wrapper %}
+<div id="page-wrapper" class="gray-bg dashbard-1">
+<div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="bread">
+                <ol class="breadcrumb">
+                    <li><a href="#">个人信息管理</a></li>
+                    <li class="active" style=""></li>
+                </ol>
+            </div>
+            <div class="panel-body">
+                <form role="form" action="{% url 'apps1:myuser_update_s'  %}" method="post">
+
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">您的昵称</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" name="username" value="{{ datas.username }}" >
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">您的邮箱</label>
+                        <input type="email" class="form-control" id="exampleInputPassword1"  name="email" value="{{ datas.email }}" >
+                    </div>
+                <div class="form-group">
+                        <label for="exampleInputPassword1">您的账号权限</label>
+                        {% if request.user.is_superuser %}
+                        <input type="text" class="form-control" id="exampleInputPassword1"  disabled="disabled" value="管理员" >
+                        {% else %}
+                        <input type="text" class="form-control" id="exampleInputPassword1"  disabled="disabled"  value="会员" >
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword5">年龄</label>
+                        <input type="text" class="form-control" id="exampleInputPassword5" name="age"   value="{{ datas.age }}" >
+                    </div>
+                <div class="form-group">
+                        <label for="exampleInputPassword6">性别</label>
+                        <input type="text" class="form-control" id="exampleInputPassword6"  name="set"  value="{{ datas.set }}" >
+                    </div>
+                    <a href="{% url 'apps1:myuser_update_s' %}"><button type="submit" class="btn btn-info">提交</button></a>
+                </form>
+            </div>
+		</div>
+</div>
+
+</div>
+{% endblock %}

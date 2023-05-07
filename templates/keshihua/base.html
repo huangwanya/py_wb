@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>{% block title %}主页{% endblock %}</title>
+
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!--link rel="shortcut icon" href="favicon.ico"--> 
+    <link href="/static/public/bootstrap/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="/static/css/index/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="/static/css/index/animate.css" rel="stylesheet">
+    <link href="/static/css/index/style.css?v=4.1.0" rel="stylesheet">
+          <link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+    <div id ="header" style="padding-left:30px;height:75px;width:auto;background-color:#2f4050">
+        <p style="padding-top:15px;font-size:25px;color:white;font-family:'黑体'">微博舆情可视化系统</p>
+        <p style="padding-top:5px;font-size:18px;color:white;font-family:'黑体';margin-top:-20px"> system</p>
+    </div>
+
+     <!--主体-->
+    
+    <div id="wrapper">
+        <!--左侧导航开始-->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="nav-close"><i class="fa fa-times-circle"></i></div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+                        <span class="ng-scope">&nbsp;</span>
+                    </li>
+                    <li>
+                        <a href="{% url 'apps1:index' %}"><i class="fa fa-folder"></i> <span class="nav-label">图表分析</span></a>
+                    </li>
+                    <li>
+                        <a href="{% url 'apps1:pinglun' %}"><i class="fa fa-folder"></i> <span class="nav-label">评论数据</span></a>
+                    </li>
+                <li>
+                        <a href="{% url 'apps1:myuser' %}"><i class="fa fa-cloud-download"></i> <span class="nav-label">个人信息管理</span></a>
+                    </li>
+                     <li>
+                     <a href="/admin"><i class="fa fa-cloud-download"></i> <span class="nav-label">管理员后台管理</span></a>
+                    </li>
+                                      <li>
+                        <a href="/accounts/logout/"><i class="fa fa-building-o"></i> <span class="nav-label">登出</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--左侧导航结束-->
+        <!--右侧部分开始-->
+            {% block wrapper %}
+                <div id="page-wrapper" class="gray-bg dashbard-1">
+
+
+                </div>
+            {% endblock %}
+
+    </div>
+
+    <!-- 全局js -->
+    <script src="/static/public/jquery/jquery-3.1.1.min.js?v=2.1.4"></script>
+    <script src="/static/public/bootstrap/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="/static/js/index/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/static/js/index/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/static/js/index/plugins/layer/layer.min.js"></script>
+
+    <!-- 自定义js -->
+    <script src="/static/js/index/hAdmin.js?v=4.1.0"></script>
+    <script type="text/javascript" src="/static/js/index/index.js"></script>
+
+</body>
+
+</html>

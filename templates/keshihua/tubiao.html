@@ -1,0 +1,291 @@
+<!--
+    THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/zh/editor.html?c=line-simple
+-->
+<!DOCTYPE html>
+<html style="height: 100%">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body style="height: 100%; margin: 0 auto">
+
+
+        <div style="height: 30%;width:49%;float:left;">
+        <center>词云图</center>
+        <img src="/static/ciyuntu/1.png" style="height: 100%;width:100%;">
+        </div>
+
+        <div id="container1" style="height: 30%;width:49%;float:left;"></div>
+        <div id="container2" style="height: 25%;width:99%;float:left;"></div>
+        <div id="container3" style="height: 25%;width:99%;float:left;"></div>
+
+        <script type="text/javascript" src="/static/echarts.min.js"></script>
+
+        
+<script type="text/javascript">
+
+var dom1= document.getElementById("container1");
+var myChart1 = echarts.init(dom1);
+
+var option1= {
+    title: {
+        text: '各情感状态占比',
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        top: '5%',
+        left: 'center'
+    },
+    series: [
+        {
+            name: '情感状态数',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            itemStyle: {
+                borderRadius: 20,
+                borderColor: '#fff',
+                borderWidth: 2
+            },
+            label: {
+                show: false,
+                position: 'center'
+            },
+            emphasis: {
+                label: {
+                    show: true,
+                    fontSize: '40',
+                    fontWeight: 'bold'
+                }
+            },
+            labelLine: {
+                show: false
+            },
+            data: {{qingan_list | safe}}
+        }
+    ]
+};
+
+if (option1&& typeof option1=== 'object') {
+    myChart1.setOption(option1);
+}
+
+</script>
+
+<script type="text/javascript">
+var dom2 = document.getElementById("container2");
+var myChart2 = echarts.init(dom2);
+var app2 = {};
+
+var option2;
+
+option2 = {
+    backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
+        offset: 0,
+        color: '#f7f8fa'
+    }, {
+        offset: 1,
+        color: '#cdd0d5'
+    }]),
+    tooltip: {
+                /*返回需要的信息*/
+                formatter: function(param) {
+                    var value = param.value;
+                    return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 16px;padding-bottom: 7px;margin-bottom: 7px;"> '+ '(微博数:' + value[1] + "时间：" + value[3]  +    ')' +
+                        '</div>';
+                }
+            },
+    title: {
+        text: '微博时间图' ,
+        left: '5%',
+        top: '3%'
+    },
+    legend: {
+        right: '10%',
+        top: '3%',
+        data: ['微博数']
+    },
+    grid: {
+        left: '8%',
+        top: '10%'
+    },
+    xAxis: {
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        },
+        scale: true
+    },
+    series: [{
+        name: '微博数',
+        data:  {{ list11 | safe}},
+        type: 'scatter',
+        symbolSize: function (data) {
+            return Math.sqrt(data[2]) / 15;
+        },
+        emphasis: {
+            focus: 'series',
+            label: {
+                show: true,
+                formatter: function (param) {
+                    return param.data[3];
+                },
+                position: 'top'
+            }
+        },
+        itemStyle: {
+            shadowBlur: 10,
+            shadowColor: 'rgba(120, 36, 50, 0.5)',
+            shadowOffsetY: 5,
+            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                offset: 0,
+                color: 'rgb(251, 118, 123)'
+            }, {
+                offset: 1,
+                color: 'rgb(204, 46, 72)'
+            }])
+        }
+    }
+    ]
+};
+
+
+if (option2 && typeof option2 === 'object') {
+    myChart2.setOption(option2);
+}
+
+</script>
+
+<script type="text/javascript">
+var dom2 = document.getElementById("container3");
+var myChart2 = echarts.init(dom2);
+var app2 = {};
+
+var option2;
+
+option2 = {
+  title: {
+    text: '情绪折线图'
+  },
+  tooltip: {
+    trigger: 'axis'
+  },
+  legend: {
+    data: ['积极','消极','一般']
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data:  {{date_name | safe}}
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      name: '积极',
+      type: 'line',
+      stack: 'Total',
+      data:  {{jiji_count | safe}},
+        areaStyle: {}
+    },
+    {
+      name: '消极',
+      type: 'line',
+      stack: 'Total',
+      data: {{xiaoji_count | safe}},
+        areaStyle: {}
+    },
+    {
+      name: '一般',
+      type: 'line',
+      stack: 'Total',
+      data: {{yiban_count | safe}},
+        areaStyle: {}
+    }
+  ]
+};
+
+
+if (option2 && typeof option2 === 'object') {
+    myChart2.setOption(option2);
+}
+
+</script>
+
+<script type="text/javascript">
+var dom2 = document.getElementById("container4");
+var myChart2 = echarts.init(dom2);
+var app2 = {};
+
+var option2;
+
+option2 = {
+  title: {
+    text: '发布人占比',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+            type: 'scroll',            // 设置图例翻页
+            icon: 'rect',
+            itemWidth: 12,             // 图例图形宽度
+            itemHeight: 10,
+            orient: 'horizontal',     // 图例横向排布
+            left: 15,				// 图例位置
+            bottom: 8,
+            pageIconColor: '#fff',
+            pageTextStyle: {
+              color: '#fff'
+            },
+            itemGap: 20
+  },
+  series: [
+    {
+      name: '微博数',
+      type: 'pie',
+      radius: '50%',
+      data: {{name_count | safe}},
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }
+    }
+  ]
+};
+
+
+if (option2 && typeof option2 === 'object') {
+    myChart2.setOption(option2);
+}
+
+</script>
+
+
+    </body>
+</html>

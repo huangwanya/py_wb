@@ -1,0 +1,23 @@
+{% extends 'keshihua/base.html' %}
+{% block title %}图表分析{% endblock %}
+{% block wrapper %}
+<div id="page-wrapper" class="gray-bg dashbard-1" style="height:1500px">
+<div class="gray-bg wrapper wrapper-content">
+        <div class="row">
+            <div class="bread">
+                <ol class="breadcrumb" >
+                    <li><a href="#">图表分析</a></li>
+                    <li class="active" style=""></li>
+                </ol>
+            </div>
+
+        </div>
+
+</div>
+<iframe class="gray-bg" id="J_iframe" src="{% url 'apps1:tubiao'  %}" width="100%"   frameborder="0" scrolling="no" data-id=" seamless" style="padding: 0;width:100%;" marginwidth="0" height="100%" ></iframe>
+</div>
+
+
+
+
+{% endblock %}
